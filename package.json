@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/JaredC71/Employee-Tracker#readme",
   "dependencies": {
+    "boxen": "^5.0.1",
     "inquirer": "^8.1.1",
     "mysql": "^2.18.1"
   }
