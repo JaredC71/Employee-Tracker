@@ -21,6 +21,7 @@ const startQuestions = [
       "Remove Employee",
       "View Departments",
       "View Titles",
+      "Update Employee Role",
       "Exit",
     ],
   },
@@ -72,6 +73,39 @@ const removeEmployeeQuestions = [
     choices: ["yes", "no"],
   },
 ];
+
+const updateEmployeeQuestions = [
+  {
+    name: "FirstNameEmployee_To_Be_Updated",
+    type: "input",
+    message: "Employees first name",
+  },
+  {
+    name: "LastNameEmployee_To_Be_Updated",
+    type: "input",
+    message: "Employees last name",
+  },
+  {
+    name: "newRole",
+    type: "input",
+    message: "What is this employees new Role?",
+  },
+];
+
+function updateEmployee() {
+
+  return inquirer.prompt(updateEmployeeQuestions).then((answer) => {
+    connection.query(
+      `UPDATE Employees 
+      SET title = "${answer.newRole}"
+      WHERE first_name = "${answer.FirstNameEmployee_To_Be_Updated}" 
+      AND last_name = "${answer.LastNameEmployee_To_Be_Updated}";`
+    );
+
+    init();
+  });
+
+}
 
 function addEmployeePrompt() {
   return inquirer.prompt(addEmployeeQuestions).then((answer) => {
@@ -153,6 +187,8 @@ function init() {
         viewDepartments();
       } else if (answer.mainMenu == "View Titles") {
         viewRoles();
+      } else if(answer.mainMenu == 'Update Employee Role') {
+        updateEmployee();
       }
     })
     .catch((err) => {
