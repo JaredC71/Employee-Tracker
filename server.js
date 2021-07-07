@@ -135,7 +135,7 @@ function viewDepartments() {
   connection.query(
     "CREATE TABLE Departments AS (SELECT DISTINCT department FROM Employees);"
   );
-  connection.query("SELECT * FROM DEPARTMENTS;", (err, res) => {
+  connection.query("SELECT * FROM Departments;", (err, res) => {
     if (err) throw err;
     console.table(res);
 
@@ -198,5 +198,4 @@ function init() {
 
 init();
 
-// basically for linking roles with department, pass a
 
